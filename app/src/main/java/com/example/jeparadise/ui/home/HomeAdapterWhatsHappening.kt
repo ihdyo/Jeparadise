@@ -1,5 +1,6 @@
 package com.example.jeparadise.ui.home
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jeparadise.R
 import com.example.jeparadise.model.MainModel
+import com.example.jeparadise.ui.detail.DetailActivity
 import com.google.firebase.firestore.DocumentSnapshot
 import com.squareup.picasso.Picasso
 
@@ -31,6 +33,17 @@ class HomeAdapterWhatsHappening(private val whatsHappeningSnapshotList: List<Doc
             Picasso.get().load(data.url).into(holder.happeningImage)
             holder.happeningName.text = data.name
             holder.happeningLocation.text = data.location
+
+            holder.itemView.setOnClickListener {
+                val intent = Intent(it.context, DetailActivity::class.java)
+                intent.putExtra("name", data.name)
+                intent.putExtra("url", data.url)
+                intent.putExtra("location", data.location)
+                intent.putExtra("distance", data.distance.toString() + " km")
+                intent.putExtra("category", data.category)
+                intent.putExtra("description", data.description)
+                it.context.startActivity(intent)
+            }
         }
     }
 

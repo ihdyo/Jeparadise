@@ -37,7 +37,12 @@ class HomeAdapterTheMostVisited(private val theMostVisitedSnapshotList: List<Doc
 
                 holder.itemView.setOnClickListener {
                     val intent = Intent(it.context, DetailActivity::class.java)
-                    intent.putExtra("item_data", data.description)
+                    intent.putExtra("name", data.name)
+                    intent.putExtra("url", data.url)
+                    intent.putExtra("location", data.location)
+                    intent.putExtra("distance", data.distance.toString() + " km")
+                    intent.putExtra("category", data.category)
+                    intent.putExtra("description", data.description)
                     it.context.startActivity(intent)
                 }
             }

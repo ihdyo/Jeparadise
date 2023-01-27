@@ -1,6 +1,7 @@
 package com.example.jeparadise.ui.place
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jeparadise.R
 import com.example.jeparadise.model.MainModel
+import com.example.jeparadise.ui.detail.DetailActivity
 import com.google.firebase.firestore.DocumentSnapshot
 import com.squareup.picasso.Picasso
 
@@ -35,6 +37,17 @@ class PlaceAdapter (private val placeSnapshotList: List<DocumentSnapshot>) : Rec
             holder.placeName.text = data.name
             holder.placeLocation.text = data.location
             holder.placeDistance.text = data.distance.toString() + " km"
+
+            holder.itemView.setOnClickListener {
+                val intent = Intent(it.context, DetailActivity::class.java)
+                intent.putExtra("name", data.name)
+                intent.putExtra("url", data.url)
+                intent.putExtra("location", data.location)
+                intent.putExtra("distance", data.distance.toString() + " km")
+                intent.putExtra("category", data.category)
+                intent.putExtra("description", data.description)
+                it.context.startActivity(intent)
+            }
         }
     }
 
