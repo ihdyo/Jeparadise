@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class MainModel (
-    var distance : Int? = 0,
+    var distance : Double? = 0.0,
     var location : String? = null,
     var name : String? = null,
     var url : String? = null,

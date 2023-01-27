@@ -45,7 +45,6 @@ class EventAdapter (private val eventSnapshotList: List<DocumentSnapshot>) : Rec
                 intent.putExtra("url", data.url)
                 intent.putExtra("location", data.location)
                 intent.putExtra("distance", data.distance.toString() + " km")
-                intent.putExtra("category", data.category)
                 intent.putExtra("description", data.description)
                 it.context.startActivity(intent)
             }
